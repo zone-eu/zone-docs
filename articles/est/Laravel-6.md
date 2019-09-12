@@ -679,7 +679,7 @@ Külastame aadressi `https://laravel.miljonivaade.eu/sendtask`. Kui kõik on õi
 tail -f /data01/virt75146/.pm2/logs/laravel-echo-server-out.log
 ```
 
-## 7.1.3 Laraevl Echo & Socket.IO JS kliendi seadistamine
+## 7.1.3 Laravel Echo & Socket.IO JS kliendi seadistamine
 Paigaldame vajalikud javascript teegid:
 ```sh
 npm install --save laravel-echo socket.io-client
