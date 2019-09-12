@@ -1,6 +1,6 @@
 ## Let's Encrypt Node.JS rakendusega
 
-Kuna Let's Encyrpt EULA ei luba jagada privaatseid võtmeid, siis Zone veebiserveri välises kontekstis peab sertifikaadi ise taotlema. /.well-know/acme-challenge URL on juba reserveeritud Zone enda tarvis ning ainuke variant on kasutada DNS autentimist. Selleks sobib väga hästi Acme.sh lihtne bash'i rakendus, millele on Zone.EU toe lisanud oma tänuväärse tööga @tambetliiv
+Kuna Let's Encyrpt EULA ei luba jagada privaatseid võtmeid, siis Zone veebiserveri välises kontekstis peab sertifikaadi ise taotlema. /.well-know/acme-challenge URL on juba reserveeritud Zone enda tarvis ning ainuke variant on kasutada DNS autentimist. Selleks sobib väga hästi Acme.sh lihtne bash'i rakendus, millele on Zone.EU toe lisanud oma tänuväärse tööga [tambetliiv](https://github.com/tambetliiv).
 
 Antud olukorras eeldan, et Node.JS rakenduseks on Virtuaalserveri kaudu lisatud rakendus, mille nimi on "laravel-echo server". Kui soovime kindlad olla, et läbi Minu Zone UI lisatud rakenduse nimi ikka vastab sellele, siis näeb hetkel töötavaid rakendusi käsuga:
 
