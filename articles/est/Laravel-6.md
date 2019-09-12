@@ -1,4 +1,4 @@
-# Laravel 56.0 paigaldamine ning seadistamine Zone virtuaalserveris
+# Laravel 6.0 paigaldamine ning seadistamine Zone virtuaalserveris
 
 Autor: [Ingmar Aasoja](https://github.com/ybr-nx)
 
