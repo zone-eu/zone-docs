@@ -19,7 +19,7 @@ source .bash_profile
 ```
 
 Paigalda Acme.sh klient:
-```
+```sh
 curl https://get.acme.sh | sh
 mkdir -p bin
 ln -s ~/.acme.sh/acme.sh ~/bin/acme.sh
@@ -42,7 +42,7 @@ acme.sh --issue -d laravel.miljonivaade.eu --dns dns_zone \
 Skript ootab 5 minutit DNS kirje leviku taga. Kui skript töö lõpetab, on vajalikud sertifikaadifailid loodud ning taaskäivitatud ka vajalik Node.JS rakendus.
 
 Selleks, et sertifikaat ka automaatselt uueneks, lisa antud rida Virtuaalserveri halduses `Veebiserver` -> `Crontab`. Intervalliks määra iga kuu vabalt valitud kuupäev, käivitusviis "süsteemselt" ning käsk järgmine:
-```
+```sh
 source ~/.bash_profile && acme.sh --issue -d laravel.miljonivaade.eu --dns dns_zone --reloadcmd "pm2 restart laravel-echo-server"
 ```
 
