@@ -183,7 +183,7 @@ Migrated:  2019_08_19_000000_create_failed_jobs_table (0 seconds)
 
 Kuna Zones on kasutusel MariaDB ning Laraveli enda sisene MariaDB draiver ei oska kõikide JSON funktsioonidega ringi käia (kasutatakse MySQL omast json path aliast), siis tuleb paigaldada MariaDB toe pakk.
 
-Alates Laraveli versioonist 5.8 (mis ilmus 2019 alguses), pole seda enam vaja. Siiski võib seda vaja minna varasematel versioonidel ning seetõttu jätan selle info ka siia õpetusse. Kasutada saab seda ka 6.0 versiooniga ning kuna MariaDB's on teatud erinevusi, siis võib see tulla tulevikus kaskuks:
+Alates Laraveli versioonist 5.8 (mis ilmus 2019 alguses), pole seda enam vaja. Siiski võib seda vaja minna varasematel versioonidel ning seetõttu jätan selle info ka siia õpetusse. Kasutada saab seda ka 6.0 versiooniga ning kuna MariaDB's on teatud erinevusi, siis võib see tulla tulevikus kasuks:
 https://github.com/laravel/framework/pull/25517
 
 Paigaldame paki:
