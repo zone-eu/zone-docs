@@ -16,7 +16,7 @@ virtualenv ~/.venv/django-dev --python=python3.6
 source ~/.venv/django-dev/bin/activate
 ```
 
-## 2. Django paigaldame ja seadistame
+## 2. Django paigaldamine ja seadistamine
 
 Valitud on verioon 2.1 kuna 2.2 ei toeta PyMySQL moodulit. (Vaata antud õpetuse punkti **6**)
 
