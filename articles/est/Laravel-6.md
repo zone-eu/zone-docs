@@ -425,11 +425,12 @@ Loome kõigepealt konfiguratsioonifaili `pm2.laravel.queue.json` sisuga:
 ```
 
 Vajalikud seadistuste kirjeldused, mis tuleb seadistada vastavalt oma rakendusele:
-| Väli                    | Kirjeldus                                                    |
-| ----------------------- | ------------------------------------------------------------ |
-| apps.name               | Vabalt valitud nimi, mida kuvatakse PM2 halduses             |
-| apps.cwd                | Täispikk rakenduse juurkataloogi asukoht                     |
-| apps.max_memory_restart | Määrab kui suure mälu kasutuse korral rakendus taaskäivitatakse. Tuleb seadistada oma äranägemise järgi, aga kindlasti ei tohi see ületada paketis lubatut: https://www.zone.ee/et/virtuaalserver/vordlus. Kui on plaanis kasutada websocketeid, peab arvestama, et kõikide rakenduste kogumaht ei ületaks lubatut. |
+
+| Väli | Kirjeldus |
+| --- | --- |
+| `apps.name` | Vabalt valitud nimi, mida kuvatakse PM2 halduses |
+| `apps.cwd` | Täispikk rakenduse juurkataloogi asukoht |
+| `apps.max_memory_restart` | Määrab kui suure mälu kasutuse korral rakendus taaskäivitatakse. Tuleb seadistada oma äranägemise järgi, aga kindlasti ei tohi see ületada paketis lubatut: https://www.zone.ee/et/virtuaalserver/vordlus. Kui on plaanis kasutada websocketeid, peab arvestama, et kõikide rakenduste kogumaht ei ületaks lubatut. |
 
 Nüüd tuleb antud failist ka Zone platvormile teada anda:
 `Virtuaalserver haldus` -> `Node.js ja PM2`, vajutada nuppu `Lisa uus Node.js rakendus`
@@ -517,18 +518,20 @@ Liigume tagasi rakenduse juurkataloogi ning loome JSON konfiguratsioonifaili `la
         }
 }
 ```
+
 Seadete kirjeldused, mis tuleb seadistada vastavalt oma rakendusele:
+
 | Väli | Kirjeldus |
-| ---  | --------- |
-| authHost                     | Laraveli rakenduse avalik URL                                |
-| databseConfig.redis.database | Redise andmebaasi number. Sama väärtus, mis `.env` failis muutujal `REDIS_DB` |
-| databseConfig.redis.host     | Virtuaalserveri *loopback* host                              |
-| databseConfig.redis.port     | Redise port, vaikeväärtuseks on meil **6379**                |
-| databseConfig.redis.password | Varem lisatud redise andmebaasi parool                       |
-| devMode                      | Määrab ära, et echo serverist kasutatakse arendus keskonnas. **NB!** produktsioonis peab olemas selle väärtus **false** |
-| sslCertPath                  | SSL sertifikaati path. Väärtus on erinev, kui see paigaldati teise asukohta, kui siinses õpetuses kirjeldatud |
-| sslCertPath                  | SSL sertifikaati privaatse võtme. Väärtus on erinev, kui see paigaldati teise asukohta, kui siinses õpetuses kirjeldatud |
-| apiOriginAllow.allowOrigin   | Laraveli rakenduse avalik URL                                |
+| ---  | --- |
+| `authHost` | Laraveli rakenduse avalik URL |
+| `databseConfig.redis.database` | Redise andmebaasi number. Sama väärtus, mis `.env` failis muutujal `REDIS_DB` |
+| `databseConfig.redis.host` | Virtuaalserveri *loopback* host |
+| `databseConfig.redis.port` | Redise port, vaikeväärtuseks on meil **6379** |
+| `databseConfig.redis.password` | Varem lisatud redise andmebaasi |
+| `devMode` | Määrab ära, et echo serverist kasutatakse arendus keskonnas. **NB!** produktsioonis peab olemas selle väärtus **false** |
+| `sslCertPath` | SSL sertifikaati path. Väärtus on erinev, kui see paigaldati teise asukohta, kui siinses õpetuses kirjeldatud |
+| `sslCertPath` | SSL sertifikaati privaatse võtme. Väärtus on erinev, kui see paigaldati teise asukohta, kui siinses õpetuses kirjeldatud |
+| `apiOriginAllow.allowOrigin` | Laraveli rakenduse avalik URL |
 
 Ning käivitame testiks **laravel-echo-server** rakenduse
 ```
