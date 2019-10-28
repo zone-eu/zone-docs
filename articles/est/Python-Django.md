@@ -136,7 +136,7 @@ python miljonivaade/manage.py migrate
 
 ## 4. Seadistame serveri serveerimaks Django rakendust
 
-## 4.1 Gunicorn ja Mod Proxy
+### 4.1 Gunicorn ja Mod Proxy
 Kuna Zone's mod_wsgi Apache moodulit ei ole, siis jääb ainukeseks võimaluseks kasutada **gunicorn** python moodulit ning serveerida seda läbi mod_proxy. Seadistame virtuaalserveri halduses soovitud domeeni/alamdomeeni mod_proxy port'i omale sobivaks. Antud juhul kasutame port'i **8000** - see on default, teisel juhul tuleb port määrata gunicorn'i käivitades optioniga `gunicorn --bind 0.0.0.0:8000`
 
 Paigalda gunicorn
@@ -181,7 +181,7 @@ urlpatterns += staticfiles_urlpatterns()
 
 Kui nüüd rakendust käivitada, siis brauser annab esilehel küll veateate, aga path'ile **/admin** minnes on pilt ilusam. 
 
-## 4.2 Pm2 teenus
+### 4.2 Pm2 teenus
 
 Et kindel olla rakenduse toimivuses pärast serveri taaskäivitamist ja/või mõne muu probleemi tekkimist, pead seadistama Pm2 teenuse.
 
@@ -224,7 +224,7 @@ Ning kui muudatused tehtud, siis lülita see välja
 pm2 start django
 ```
 
-# 6. Django 2.2 ja PyMysql
+## 6. Django 2.2 ja PyMysql
 
 Kuna PyMySQL'il on veel kompatiilsusprobleeme Djangoga 2.2 versiooniga, siis peab muutma mõnda faili. Neid tuleb teha iga kord, kui paigaldatakse antud pakk pip'iga. Kui antud *issue* lahendatakse, siis täiendan õpetust.
 https://github.com/PyMySQL/PyMySQL/issues/790
