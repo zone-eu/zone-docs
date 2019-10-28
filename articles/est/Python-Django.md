@@ -206,6 +206,7 @@ Järgmiseks tuleb see seadistada Minu Zone's
 Vajuta nuppu **Lisa uus Node.js rakendus**
 
 | Väli | Kirjeldus | 
+| --- | --- |
 | **nimi** | django |
 | **skript või PM2 .JSON** | django-project/miljonivaade/django.config.js |
 
