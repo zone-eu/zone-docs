@@ -1,4 +1,4 @@
-## Let's Encrypt genereerimine Acme.sh kliendiga Node.JS rakenduse näitel
+# Let's Encrypt genereerimine Acme.sh kliendiga Node.JS rakenduse näitel
 
 Autor: [Ingmar Aasoja](https://github.com/ybr-nx)
 
