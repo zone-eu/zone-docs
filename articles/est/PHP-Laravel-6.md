@@ -472,7 +472,7 @@ Siinses õpetuses seadistame websocketite kasutamise **Redise** ning **Socket.IO
 Meil on paigaldatud Let's Encrypt sertifikaat, kuid see paigaldatakse automaatselt ainult Apache veebiserverile ning selle proxy'le. Kuna EULA sertifikaatide privaatseid võitmeid jagada ei luba, tuleb siinkohal kasutada oma sertifikaate. Selleks on kolm võimalust:
 * Tellida tasuline sertifikaat: [SSL sertifikaat - Zone.ee](https://www.zone.ee/et/turvalisus/ssl-sertifikaat/)
 * Genereerida `self signed` sertifikaat
-* Luua oma vahenditega Let's Encrypt sertifikaat kasutades DNS autoriseeringut ning Zone API't: [Let's Encrypt Node.JS rakendusega](https://github.com/zone-eu/docs/blob/master/articles/est/Lets-Encrypt-NodeJS.md)
+* Luua oma vahenditega Let's Encrypt sertifikaat kasutades DNS autoriseeringut ning Zone API't: [Let's Encrypt genereerimine Acme.sh kliendiga](./LetsEncrypt-Acme.sh.md) või [Let's Encrypt genereerimine Lego kliendiga](./LetsEncrypt-Lego.md)
 
 Siinses juhendis eeldame, et üks neist on juba tehtud ning sertifikaat koos võtmega asub kataloogis `/data01/virt75146/certs`
 
