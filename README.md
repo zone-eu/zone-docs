@@ -1,4 +1,3 @@
-
 # Zone.EU technical documentation and script examples
 
 All articles are writte "as is" by zone hackers community. Everything is *semi-official* and not officially supported by helpdesk.
@@ -18,7 +17,6 @@ Feel free to contribute.
 | Laravel&nbsp;6 | `php` | Laravel framework | - | [EST](./articles/est/PHP-Laravel-6.md) |
 | Gitea | `git`, `go` | Self-hosted Git service | - | [EST](./articles/est/Go-Gitea.md) |
 | Django&nbsp;2 | `python` | Django web framework | - | [EST](./articles/est/Python-Django.md) |
-| Acme.sh | `lets encrypt`, `shell` | An ACME protocol client written purely in Shell (Unix shell) language. | - | [EST](./articles/est/LetsEncrypt-Acme.sh.md) |
-| LeGo | `lets encrypt`, `go` | Let's Encrypt client and ACME library written in Go. | - | [EST](./articles/est/LetsEncrypt-Lego.md) |
-
-
+| Acme.sh | `lets encrypt`, `shell` | An ACME protocol client written purely in Shell (Unix shell) language | - | [EST](./articles/est/LetsEncrypt-Acme.sh.md) |
+| LeGo | `lets encrypt`, `go` | Let's Encrypt client and ACME library written in Go | - | [EST](./articles/est/LetsEncrypt-Lego.md) |
+| SSH&nbsp;config | `shell`, `php`, `api`| Generating SSH config and SSHFS mount aliases using Zone API | [ENG](./articles/eng/SSH-config-and-fs-from-zone-api.md) | - |
