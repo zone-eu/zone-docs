@@ -27,7 +27,7 @@ But when you have A LOT of servers even managing and updating these config entri
 With Zone API you can generate config entries for all servers you have access to,
 e.g these are on your account or delegated to you (with full rights).
 
-Download [generate_ssh_configs.php](scripts/generate_ssh_configs.php) and add your 
+Download [generate_ssh_configs.php](/scripts/generate_ssh_configs.php) and add your 
 API credentials to array:
 
 ```
