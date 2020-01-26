@@ -7,9 +7,9 @@ you can specify username and other options for each hostname:
 
 ```sshconfig
 Host example.com
-        HostName example.com
-        ForwardAgent yes
-        User virt11111
+    HostName example.com
+    ForwardAgent yes
+    User virt11111
 ```
 
 ... so instead of `ssh virt11111@example.com` you can do just `ssh example.com`.
@@ -36,8 +36,14 @@ $zoneApiKeys = [
 ];
 ```
 
+And run it:
+
+````shell script
+php generate_ssh_configs.php
+````
+
 Script will generate config files `~/.ssh/[zoneidusername].config` and as an additional
-feature also aliases for mounting these accounts using SSHFS in `~/.ssh/[zoneidusername].alias`.
+feature also aliases for mounting these accounts using SSHFS in `~/[zoneidusername].alias`.
 
 ### Including in main config
 
@@ -63,7 +69,9 @@ alias umount_sshfs='for f in ~/sshfs/*; do umount "$f"; done'
 complete -W "$(echo `cat ~/.ssh/config ~/.ssh/*.config | grep -E '^Host' | cut -d" " -f2- | tr " " "\n" | grep -v "*" | sort | uniq`;)" ssh
 ```
 
-Apparently you can unmount all SSHFS shares with `umount_sshfs` AND all hosts also appear as `ssh` autocomplete suggestions. 
+Undocumented features:
+* you can unmount all SSHFS shares with `umount_sshfs`
+* all hosts in config will appear as `ssh` autocomplete suggestions
 
 ### ToDo
 
