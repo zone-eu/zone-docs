@@ -5,7 +5,7 @@ Author: [Peeter Marvet](https://github.com/petskratt), original idea / script fr
 Managing SSH accounts on multiple servers is made easier with `~/.ssh/config`, where 
 you can specify username and other options for each hostname:
 
-```
+```sshconfig
 Host example.com
         HostName example.com
         ForwardAgent yes
@@ -16,7 +16,7 @@ Host example.com
 
 Connecting to these accounts using SSHFS can be made easier using alias:
 
-```
+```shell
 alias mount_example.com="mkdir -p ~/sshfs/example.com && sshfs -o follow_symlinks -o volname=example.com virt11111@example.com: ~/sshfs/example.com"
 ```
 
@@ -30,7 +30,7 @@ e.g these are on your account or delegated to you (with full rights).
 Download [generate_ssh_configs.php](/scripts/generate_ssh_configs.php) and add your 
 API credentials to array:
 
-```
+```php
 $zoneApiKeys = [
 	'zoneidusername' => 'apikeyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 ];
@@ -43,7 +43,7 @@ feature also aliases for mounting these accounts using SSHFS in `~/.ssh/[zoneidu
 
 To use these add to your `~/.ssh/config`:
 
-```
+```sshconfig
 Include *.config
 ```
 
@@ -54,7 +54,7 @@ an entry before the `Include`.
 
 Add to your `~/.bash_profile` if you'd like to use SSHFS:
 
-```
+```shell
 # aliases generated from Zone API
 for f in ~/*.alias; do source "$f"; done
 alias umount_sshfs='for f in ~/sshfs/*; do umount "$f"; done'
