@@ -24,8 +24,8 @@ But when you have A LOT of servers even managing and updating these config entri
 
 ### Generating config files and aliases
 
-With Zone API you can generate config entries for all servers you have access to,
-e.g these are on your account or delegated to you (with full rights).
+With [Zone API](https://api.zone.eu/v2) you can generate config entries for all servers you have access to,
+e.g these are on your account or delegated to you (with full rights). API key can be generated in [my.zone.eu](https://my.zone.eu) self-service panel.
 
 Download [generate_ssh_configs.php](/scripts/generate_ssh_configs.php) and add your 
 API credentials to array:
