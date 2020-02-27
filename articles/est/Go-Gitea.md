@@ -65,7 +65,7 @@ Siseneme virtuaalserverisse SSH abil ning käivitame järgmised read:
 ```sh
     mkdir domeenid/www.git.miljonivaade.eu/gitea
     cd domeenid/www.git.miljonivaade.eu/gitea
-    wget -O gitea https://dl.gitea.io/gitea/1.4.2/gitea-1.4.2-linux-amd64
+    wget -O gitea https://dl.gitea.io/gitea/1.9.6/gitea-1.9.6-linux-amd64
     chmod +x gitea
 ```
 Et Gitea esialgse konfiguratsioonifaili genereeriks, tuleb gitea korraks käivitada. Antud juhul see ebaõnnestub, aga tekitatakse **custom/conf/app.ini** fail.
