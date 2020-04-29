@@ -56,7 +56,7 @@ function snuff() {
   fi
 
   echo "Starting scan of $1"
-  phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=phpcs_full.txt --report-json=phpcs_full.json --report-source=phpcs_source.txt "$1"
+  phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_source.txt --report-code=sniffex_code.txt "$1"
 }
 
 if [ $# -eq 0 ]; then
