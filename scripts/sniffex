@@ -33,7 +33,7 @@ function init() {
   git clone git@github.com:PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
   git clone git@github.com:PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
 
-  phpcs --config-set installed_paths ~/bin/PHPCompatibility
+  phpcs --config-set installed_paths "$HOME/bin/PHPCompatibility,$HOME/bin/PHPCSUtils"
   phpcs --config-set default_standard PHPCompatibility,PHPCSUtils
   phpcs --config-set colors 1
 }
