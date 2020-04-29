@@ -7,6 +7,13 @@ and removing dependencies in ~/bin (and our current preferences for minimal nois
 
 ##Usage
 
+Download `sniffex`
+
+```shell script
+mkdir -p ~/bin && wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex -o ~/bin/sniffex && chmod +x ~/bin/sniffex
+```
+
+
 ```shell script
 sniffex command [./path]
 
