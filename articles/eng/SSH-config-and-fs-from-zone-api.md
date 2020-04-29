@@ -54,7 +54,12 @@ Include *.config
 ```
 
 As `ssh` uses first match from `~/.ssh/config` you can override generated host entries by placing 
-an entry before the `Include`.
+an entry before the `Include`, in which case you also need to add `Host *`:
+
+```sshconfig
+Host *
+    Include *.config
+```
 
 ### Creating aliases
 
