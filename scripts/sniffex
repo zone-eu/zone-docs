@@ -21,28 +21,31 @@ function init() {
   mkdir -p ~/bin
 
   wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-  wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
-
   mv -f phpcs.phar ~/bin/phpcs
-  mv -f phpcbf.phar ~/bin/phpcbf
-
   chmod +x ~/bin/phpcs
-  chmod +x ~/bin/phpcbf
+  chmod +x ~/bin/phpcs
+
+  # wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+  # mv -f phpcbf.phar ~/bin/phpcbf
+  # chmod +x ~/bin/phpcbf
 
   rm -rf ~/bin/PHPCompatibility
   git clone git@github.com:PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
+  git clone git@github.com:PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
 
   phpcs --config-set installed_paths ~/bin/PHPCompatibility
-  phpcs --config-set default_standard PHPCompatibility
+  phpcs --config-set default_standard PHPCompatibility,PHPCSUtils
   phpcs --config-set colors 1
 }
 
 function cleanup() {
   rm -f ~/bin/phpcs
-  rm -f ~/bin/phpcbf
+  # rm -f ~/bin/phpcbf
   rm -f ~/bin/CodeSniffer.conf
 
   rm -rf ~/bin/PHPCompatibility
+  rm -rf ~/bin/PHPCSUtils
+  rm -f ~/bin/sniffex
 }
 
 function snuff() {
@@ -53,11 +56,7 @@ function snuff() {
   fi
 
   echo "Starting scan of $1"
-  phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/* --runtime-set testVersion 5.6 --report-full=full_phpcs.txt --report-json=full_phpcs.json "$1"
-
-  # memo-to-self:
-  # --parallel=10
-  # --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses
+  phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=phpcs_full.txt --report-json=phpcs_full.json --report-source=phpcs_source.txt "$1"
 }
 
 if [ $# -eq 0 ]; then
