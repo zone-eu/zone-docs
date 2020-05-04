@@ -10,7 +10,7 @@ and removing dependencies in ~/bin (and our current preferences for minimal nois
 Download `sniffex`
 
 ```shell script
-mkdir -p ~/bin && wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex -o ~/bin/sniffex && chmod +x ~/bin/sniffex
+mkdir -p ~/bin && wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
 ```
 
 
