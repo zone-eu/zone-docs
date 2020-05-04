@@ -5,12 +5,12 @@ Author: [Peeter Marvet](https://github.com/petskratt)
 Script that can be used to check code for compatibility with PHP version 5.6 - including easily installing
 and removing dependencies in ~/bin (and our current preferences for minimal noise in reports).
 
-##Usage
+## Usage
 
 Download `sniffex`
 
 ```shell script
-mkdir -p ~/bin && wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
+mkdir -p ~/bin && wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
 ```
 
 
