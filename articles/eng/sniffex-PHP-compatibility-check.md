@@ -7,10 +7,10 @@ and removing dependencies in ~/bin (and our current preferences for minimal nois
 
 ## Usage
 
-Download `sniffex`
+Download [`sniffex`](/scripts/generate_ssh_configs.php) script: 
 
 ```shell script
-mkdir -p ~/bin && wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
+mkdir -p ~/bin && wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
 ```
 
 
