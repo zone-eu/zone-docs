@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<ruleset name="Zone PHP 5.6 minimum compatibility">
+    <description>Subset of PHPCompatibility for PHP 5.6 or greater compatibility checks</description>
+
+    <arg name="extensions" value="php,inc"/>
+    <arg value="spn"/>
+
+    <config name="testVersion" value="5.6"/>
+
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <exclude-pattern>*/log/*</exclude-pattern>
+    <exclude-pattern>*/logs/*</exclude-pattern>
+    <exclude-pattern>*/tmp/*</exclude-pattern>
+    <exclude-pattern>*/uploads/*</exclude-pattern>
+    <exclude-pattern>*/zoneplus_backups/*</exclude-pattern>
+    <exclude-pattern>*/sniff-examples/*</exclude-pattern>
+    <exclude-pattern>*/old/*</exclude-pattern>
+    <exclude-pattern>*/new/*</exclude-pattern>
+    <exclude-pattern>*/vana/*</exclude-pattern>
+    <exclude-pattern>*/uus/*</exclude-pattern>
+    <exclude-pattern>*/backup/*</exclude-pattern>
+    <exclude-pattern>*/dev/*</exclude-pattern>
+
+    <!-- non-essential utilities / libraries / tests -->
+    <exclude-pattern>*/adminer*</exclude-pattern>               <!-- adminer.php -->
+    <exclude-pattern>*/_samples/*</exclude-pattern>             <!-- ckeditor -->
+    <exclude-pattern>*/var-dumper/Tests/*</exclude-pattern>     <!-- symfony -->
+    <exclude-pattern>*/model/aws/lib/*</exclude-pattern>        <!-- phpthumbof -->
+
+    <!-- Run against the PHPCompatibility ruleset, with exceptions -->
+    <rule ref="PHPCompatibility">
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses"/>
+        <exclude name="PHPCompatibility.IniDirectives.RemovedIniDirectives"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants"/>
+        <exclude name="PHPCompatibility.ParameterValues.NewNegativeStringOffset"/>
+        <exclude name="PHPCompatibility.FunctionDeclarations.NewExceptionsFromToString"/>
+        <exclude name="PHPCompatibility.Classes.NewAnonymousClasses"/>
+        <!-- found after first set of reviews -->
+        <exclude name="PHPCompatibility.Extensions.RemovedExtensions.fbsqlRemoved"/>
+        <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sqliteRemoved"/>
+        <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sybaseRemoved"/>
+        <exclude name="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.class_nameFound"/>
+        <exclude name="PHPCompatibility.FunctionDeclarations.NonStaticMagicMethods.__sleepMethodVisibility"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.bcmod_scaleFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_aadFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_tagFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters.array_unshift_element_to_prependMissing"/>
+        <exclude name="PHPCompatibility.IniDirectives.NewIniDirectives.pcre_jitFound"/>
+        <exclude name="PHPCompatibility.IniDirectives.NewIniDirectives.session_sid_lengthFound"/>
+        <exclude name="PHPCompatibility.Interfaces.NewInterfaces.throwableFound"/>
+        <exclude name="PHPCompatibility.Keywords.ForbiddenNames.__dir__Found"/>
+        <exclude name="PHPCompatibility.Keywords.NewKeywords.t_yield_fromFound"/>
+        <exclude name="PHPCompatibility.Miscellaneous.NewPHPOpenTagEOF"/>
+        <exclude name="PHPCompatibility.ParameterValues.ForbiddenStripTagsSelfClosingXHTML"/>
+        <exclude name="PHPCompatibility.ParameterValues.NewPackFormat"/>
+        <exclude name="PHPCompatibility.TextStrings.NewUnicodeEscapeSequence"/>
+    </rule>
+
+</ruleset>

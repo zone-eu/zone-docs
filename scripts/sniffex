@@ -29,12 +29,13 @@ function init() {
   # mv -f phpcbf.phar ~/bin/phpcbf
   # chmod +x ~/bin/phpcbf
 
-  rm -rf ~/bin/PHPCompatibility
-  git clone git@github.com:PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
-  git clone git@github.com:PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
+  git clone https://github.com/PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
+  git clone https://github.com/PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
+
+  wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex-phpcs56minimal.xml -O ~/bin/sniffex-phpcs56minimal.xml
 
   phpcs --config-set installed_paths "$HOME/bin/PHPCompatibility,$HOME/bin/PHPCSUtils"
-  phpcs --config-set default_standard PHPCompatibility,PHPCSUtils
+  phpcs --config-set default_standard "$HOME/bin/sniffex-phpcs56minimal.xml"
   phpcs --config-set colors 1
 }
 
@@ -46,6 +47,7 @@ function cleanup() {
   rm -rf ~/bin/PHPCompatibility
   rm -rf ~/bin/PHPCSUtils
   rm -f ~/bin/sniffex
+  rm -f ~/bin/sniffex-phpcs56minimal.xml
 }
 
 function snuff() {
@@ -56,7 +58,9 @@ function snuff() {
   fi
 
   echo "Starting scan of $1"
-  phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_source.txt --report-code=sniffex_code.txt "$1"
+  # phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_source.txt --report-code=sniffex_code.txt "$1"
+  # moved settings to ruleset (that has been configured as default)
+  phpcs --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_summary.txt --report-code=sniffex_code.txt "$1"
 }
 
 if [ $# -eq 0 ]; then
