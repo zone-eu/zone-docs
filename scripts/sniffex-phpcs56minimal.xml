@@ -40,11 +40,14 @@
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.fbsqlRemoved"/>
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sqliteRemoved"/>
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sybaseRemoved"/>
+        <exclude name="PHPCompatibility.Extensions.RemovedExtensions.dbaseRemoved"/>
         <exclude name="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.class_nameFound"/>
         <exclude name="PHPCompatibility.FunctionDeclarations.NonStaticMagicMethods.__sleepMethodVisibility"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.bcmod_scaleFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_aadFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_decrypt_tagFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_aadFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.openssl_encrypt_tagFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound"/>
         <exclude name="PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters.array_unshift_element_to_prependMissing"/>
         <exclude name="PHPCompatibility.IniDirectives.NewIniDirectives.pcre_jitFound"/>

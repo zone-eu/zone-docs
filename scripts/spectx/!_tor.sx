@@ -1,0 +1,26 @@
+// Template to find usage from TOR exit nodes
+// peeter@zone.ee 2020-05-14
+
+@stream = PARSE(pattern:$[/user/zone_accesslog_universal.sxp],
+			 src:'file://spectx/example/*');
+
+$torpattern = <<<PATTERN
+(
+ 'ExitNode ' LD:exitNode EOL
+ 'Published ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):published EOL
+ 'LastStatus ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):lastStatus EOL
+)?
+'ExitAddress ' IPV4:exitAddress ' ' TIMESTAMP('yyyy-MM-dd HH:mm:ss'):addrTime EOL
+PATTERN;
+
+@tornodes = PARSE(pattern:$torpattern, src:'https://check.torproject.org/exit-addresses');
+
+@stream
+  |join(@tornodes on left.clientIp = right.exitAddress)
+
+  |filter( reqid is not null)
+  |select(timestamp, timestamp[1 day] as period, clientIp, cc(clientIp), asn_name(clientIp), uri, response, referrer, agent, exitNode)
+  // |filter(uri contains('example'))
+  |select(period, count(*))
+  |group(period)
+;

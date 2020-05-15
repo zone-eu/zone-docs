@@ -20,7 +20,9 @@ snuff     check the provided path
 function init() {
   mkdir -p ~/bin
 
-  wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+  #wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+  wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/phpcs_nosymlinks.phar -O phpcs.phar
+
   mv -f phpcs.phar ~/bin/phpcs
   chmod +x ~/bin/phpcs
   chmod +x ~/bin/phpcs
@@ -32,7 +34,7 @@ function init() {
   git clone https://github.com/PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
   git clone https://github.com/PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
 
-  wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex-phpcs56minimal.xml -O ~/bin/sniffex-phpcs56minimal.xml
+  wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex-phpcs56minimal.xml -O ~/bin/sniffex-phpcs56minimal.xml
 
   phpcs --config-set installed_paths "$HOME/bin/PHPCompatibility,$HOME/bin/PHPCSUtils"
   phpcs --config-set default_standard "$HOME/bin/sniffex-phpcs56minimal.xml"
