@@ -1,0 +1,19 @@
+// Template for IP counting in Apache access logs
+// peeter@zone.ee 2020-05-14
+
+@src = PARSE(pattern:$[/user/patterns/zone_accesslog_server.sxp],
+			 src:'file://spectx/example/*');
+
+$start =  T('2020-05-04 00:00:00');
+$end = $start[+24 hour];
+
+@src
+ // .filter( timestamp > $start AND timestamp < $end )
+ .select(
+    timestamp[1 min] as period,
+    ip
+    )
+ .group(period, ip)
+ .select(period, count(*) as cnt)
+ .group(period)
+;
