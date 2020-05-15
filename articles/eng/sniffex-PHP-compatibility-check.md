@@ -10,9 +10,8 @@ and removing dependencies in ~/bin (and our current preferences for minimal nois
 Download [`sniffex`](/scripts/generate_ssh_configs.php) script: 
 
 ```shell script
-mkdir -p ~/bin && wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
+mkdir -p ~/bin && wget https://raw.githubusercontent.com/zone-eu/zone-docs/master/scripts/sniffex -O ~/bin/sniffex && chmod +x ~/bin/sniffex && sniffex init
 ```
-
 
 ```shell script
 sniffex command [./path]
@@ -21,3 +20,5 @@ init      install PHP_CodeSniffer and PHPCompatibility to ~/bin
 cleanup   remove installed components from ~/bin
 snuff     check the provided path
 ```
+
+Ruleset used for checking is [`sniffex-phpcs56minimal.xml`](/scripts/sniffex-phpcs56minimal.xml).
