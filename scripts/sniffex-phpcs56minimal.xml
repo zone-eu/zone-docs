@@ -26,6 +26,7 @@
     <exclude-pattern>*/_samples/*</exclude-pattern>             <!-- ckeditor -->
     <exclude-pattern>*/var-dumper/Tests/*</exclude-pattern>     <!-- symfony -->
     <exclude-pattern>*/model/aws/lib/*</exclude-pattern>        <!-- phpthumbof -->
+    <exclude-pattern>*/connectors/lasso/*</exclude-pattern>     <!-- lassoscript -->
 
     <!-- Run against the PHPCompatibility ruleset, with exceptions -->
     <rule ref="PHPCompatibility">
