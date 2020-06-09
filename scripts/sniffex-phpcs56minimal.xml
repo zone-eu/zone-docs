@@ -20,12 +20,15 @@
     <exclude-pattern>*/uus/*</exclude-pattern>
     <exclude-pattern>*/backup/*</exclude-pattern>
     <exclude-pattern>*/dev/*</exclude-pattern>
+    <exclude-pattern>*/src/test/*</exclude-pattern>
 
     <!-- non-essential utilities / libraries / tests -->
     <exclude-pattern>*/adminer*</exclude-pattern>               <!-- adminer.php -->
     <exclude-pattern>*/_samples/*</exclude-pattern>             <!-- ckeditor -->
     <exclude-pattern>*/var-dumper/Tests/*</exclude-pattern>     <!-- symfony -->
     <exclude-pattern>*/model/aws/lib/*</exclude-pattern>        <!-- phpthumbof -->
+    <exclude-pattern>*/connectors/lasso/*</exclude-pattern>     <!-- lassoscript -->
+    <exclude-pattern>*/phpmailer/test/*</exclude-pattern>       <!-- phpmailer -->
 
     <!-- Run against the PHPCompatibility ruleset, with exceptions -->
     <rule ref="PHPCompatibility">
@@ -41,6 +44,7 @@
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sqliteRemoved"/>
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.sybaseRemoved"/>
         <exclude name="PHPCompatibility.Extensions.RemovedExtensions.dbaseRemoved"/>
+        <exclude name="PHPCompatibility.Extensions.RemovedExtensions.msqlRemoved"/>
         <exclude name="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.class_nameFound"/>
         <exclude name="PHPCompatibility.FunctionDeclarations.NonStaticMagicMethods.__sleepMethodVisibility"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctionParameters.bcmod_scaleFound"/>
@@ -59,6 +63,13 @@
         <exclude name="PHPCompatibility.ParameterValues.ForbiddenStripTagsSelfClosingXHTML"/>
         <exclude name="PHPCompatibility.ParameterValues.NewPackFormat"/>
         <exclude name="PHPCompatibility.TextStrings.NewUnicodeEscapeSequence"/>
+    </rule>
+
+    <!-- Known libraries with conditional older version compatibility code: FCKeditor, PHPmailer  -->
+    <rule ref="PHPCompatibility.Variables.RemovedPredefinedGlobalVariables">
+        <exclude-pattern>*/fckeditor*\.php</exclude-pattern>
+        <exclude-pattern>*/phpcompat\.php</exclude-pattern>
+        <exclude-pattern>*/*phpmailer\.php</exclude-pattern>
     </rule>
 
 </ruleset>
