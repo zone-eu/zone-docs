@@ -2,7 +2,7 @@
 
 Antud õpetus on testitud Ghost versiooniga **3.38.3**
 
-Allolev töötab kõik eeldusel, et on seadistatud domeeni või alamdomeeni seadetes mod_proxy port väärtusega **2368**
+Allolev töötab kõik eeldusel, et on seadistatud domeeni või alamdomeeni seadetes **mod_proxy** port väärtusega **2368**
 
 Seejärel tuleb üle SSH käivitada järgmised käsud
 
@@ -14,8 +14,6 @@ yarn add knex-migrator grunt-cli ember-cli
 # paigaldame ghost'i
 git clone --recurse-submodules git@github.com:TryGhost/Ghost
 cd Ghost
-
-# allpool olevad käsud on kõik mõeldud käivitamiseks Ghost kataloogis
 
 # Vastavalt Ghost'i dokumentatsioonile võib siin arendustsüklid seadistada, 
 # seda ei ole vaja esmaseks tööle panekuks / testimiseks
@@ -50,13 +48,13 @@ Konfifaili sisu võiks välja näha ümber järgmine:
 
 ```
 
-Testimiseks, kas rakendus on õigesti seadistatud, võib käivitada käsu
+Testimiseks, kas rakendus on õigesti seadistatud, võib käivitada käsu:
 
 ```sh
 node index.js
 ```
 
-Edaspidi arendamisel võiks piisata käsust 
+Edaspidi arendamisel piisab käsust :
 
 ```sh
 yarn dev
@@ -96,5 +94,5 @@ Täita tuleb väljad
 
 Ning vajuta nuppu `Salvesta muudatused`
 
-Rakendus võiks hakata tööle paari minu jooksul. Kui rakendus tööle ei hakka, siis saab haldusliidesest kopeerida käsurea, millega rakendus käivitati ning parandada veast vastavalt väljundile.
+Rakendus võiks hakata tööle paari minu jooksul. Kui rakendus tööle ei hakka, siis saab haldusliidesest kopeerida käsurea, millega rakendus käivitati ning parandada vead vastavalt väljundile.
 
