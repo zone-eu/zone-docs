@@ -19,17 +19,17 @@ cd Ghost
 # seda ei ole vaja esmaseks tööle panekuks / testimiseks
 # https://ghost.org/docs/install/source/
 
-# Paigaldamine vajalikud sõlutuvused
+# Paigaldamine vajalikud sõltuvused
 yarn setup
 
-# Vastavalt soovile tuleb seadistada konfiguratsioon. Minimaalse konfina tuleb seadistada andmebaas. https://ghost.org/docs/concepts/config/#database NB! zone's on host väärtus tuleb võtta Minu Zone halduspaneelist MySQL alamlehelt
+# Vastavalt soovile tuleb seadistada konfiguratsioon. Minimaalse seadistusena tuleb seadistada andmebaas. https://ghost.org/docs/concepts/config/#database NB! zone's on host väärtus tuleb võtta Minu Zone halduspaneelist MySQL alamlehelt
 ```
 
-Vajalikud seadistused tuleb teha vastalt soovile allolevates failides
+Vajalikud seadistused tuleb teha vastavalt soovile allolevates failides
 + `config.development.json` 
 + `config.production.json` (see fail tuleb ise luua)
 
-Konfifaili sisu võiks välja näha ümber järgmine:
+Faili sisu võiks välja näha ümber järgmine:
 
 ```json
 {
@@ -90,7 +90,7 @@ Täita tuleb väljad
 | --- | --- |
 | Rakenduse nimi | Ghost |
 | Skript või Pm2 .JSON | Ghost/pm2.config.json |
-| Maksimaalne mälukasutus | võib jätta seadistamata, kuna on juba seadistatud pm2 confi failis. |
+| Maksimaalne mälukasutus | võib jätta seadistamata, kuna on juba seadistatud pm2 failis serveris. |
 
 Ning vajuta nuppu `Salvesta muudatused`
 
