@@ -1,0 +1,24 @@
+// Template for just a nice log view with some filters
+// peeter@zone.ee 2020-05-14
+
+@src = PARSE(pattern:$[/user/patterns/zone_accesslog_server.sxp],
+			 src:'file://spectx/example/*');
+
+$start =  T('2020-05-04 00:00:00');
+$end = $start[+24 hour];
+
+@src
+ // .filter( timestamp > $start AND timestamp < $end )
+ |filter(
+   reqid IS NOT null
+   // AND time > 1
+   // AND uri contains('cron')
+   // AND response = 500
+   // AND (agent contains('yandex') OR agent contains('semrush') OR agent contains('ahrefs') OR cc(IPADDR(host)) = 'CN' OR ASN(IPADDR(host)) = 136907)
+   // OR true
+ )
+ |select(
+	timestamp, TIME_TO_STR(timestamp + time * 1000, 'HH:mm:ss.SSS') as endtime, time, verb, vhost, uri, ip, cc(ip), asname(ip), response, bytes, agent, referrer
+ )
+ |sort(timestamp)
+;

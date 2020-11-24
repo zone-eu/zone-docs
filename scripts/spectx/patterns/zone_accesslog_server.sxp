@@ -1,0 +1,17 @@
+(LD:vhost ' ')?
+IPADDR:ip
+' ' ('-' | NSPACE:ident)
+' ' ('-' | (DATA{1,8192}:auth >>(' [' HTTPDATE)))
+' ' '[' HTTPDATE:timestamp ']'
+' ' (('\"' [A-Z-_]+:verb ' ' LD{0,8192}:uri (' HTTP/' FLOAT:httpversion '\"')?) | DQS{0,8192}:invalidRequest)
+' ' (INTEGER:response | '-')
+' ' (LONG:bytes | '-')
+(' ' DQS{0,8192}:referrer (' ' DQS{0,8192}:agent)?)?
+' ('
+('-' | LD:reqid)
+(',' LD)?
+'-'
+('-' | FLOAT:time)
+(',' FLOAT)?
+')'
+EOL

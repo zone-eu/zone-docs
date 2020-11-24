@@ -1,0 +1,43 @@
+// Template for summarizing PHP performance in Apache access logs
+// peeter@zone.ee 2020-05-14
+
+@src = PARSE(pattern:$[/user/patterns/zone_accesslog_server.sxp],
+			 src:'file://spectx/example/*');
+
+$start =  T('2020-05-04 00:00:00');
+$end = $start[+24 hour];
+
+@src
+ //|filter( timestamp > $start AND timestamp < $end )
+ |select(
+    timestamp[1 min] as period,
+    round(avg(time)*100)/100 as avg,
+    count(time >= 1) as long,
+    count(time < 1) as short,
+   	count(reqid is NOT null) as PHP,
+    round(sum(time)) as total_time,
+   // sum(bytes)/10000 as total_transfer,
+    count(reqid is null) as static,
+
+    // misc bots
+    count(reqid is NOT null AND (agent contains('yandex') OR agent contains('semrush') OR agent contains('ahrefs') OR cc(ip) = 'CN' or ASN(ip) = 136907)) as bots,
+
+    // misc response codes
+    // count(response != 200 AND response <500) as not200
+    // count(response = 200) as success,
+    // count(response >= 300 AND response < 400) as redirect,
+    // count(response >= 400 AND response < 500) as err40x,
+    count( response >= 500 ) as err50x
+   
+    // uri-based 
+    // count(uri = '/assets/styles/calendar_multiday.css') as assets,
+
+   	// single vhost from logfile
+    // sum( if( vhost not contains('example.com'), bytes, long(0)) )/10000 as other_transfer,
+	// sum( if( vhost not contains('example.com'), time, float(0)) ) as other_time,
+    // count( vhost contains('example.com') AND reqid is NOT null) as vhost_requests,
+    // sum( if( vhost contains('example.com'), bytes, long(0)) )/10000 as vhost_transfer,
+	// sum( if( vhost contains('example.com'), time, float(0)) ) as vhost_time,
+    )
+ |group(period)
+;

@@ -1,0 +1,73 @@
+#!/bin/bash
+# for debug output, uncomment:
+#set -x
+
+function help() {
+
+  # yes, sniffex is named after the famous Sniffex scam https://sniffexquestions.blogspot.com/ (a bit like Xenu's Link Sleuth)
+  echo "PHP code check for PHP 5.6 compatibility using PHP_CodeSniffer and PHPCompatibility -v 0.2 2020-04-29 / peeter@zone.ee
+
+Usage:
+
+sniffex command [./path]
+
+init      install PHP_CodeSniffer and PHPCompatibility to ~/bin
+cleanup   remove installed components from ~/bin
+snuff     check the provided path
+"
+}
+
+function init() {
+  mkdir -p ~/bin
+
+  #wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+  wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/phpcs_nosymlinks.phar -O phpcs.phar
+
+  mv -f phpcs.phar ~/bin/phpcs
+  chmod +x ~/bin/phpcs
+  chmod +x ~/bin/phpcs
+
+  # wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+  # mv -f phpcbf.phar ~/bin/phpcbf
+  # chmod +x ~/bin/phpcbf
+
+  git clone https://github.com/PHPCompatibility/PHPCompatibility.git ~/bin/PHPCompatibility
+  git clone https://github.com/PHPCSStandards/PHPCSUtils.git ~/bin/PHPCSUtils
+
+  wget https://raw.githubusercontent.com/petskratt/zone-docs/master/scripts/sniffex-phpcs56minimal.xml -O ~/bin/sniffex-phpcs56minimal.xml
+
+  phpcs --config-set installed_paths "$HOME/bin/PHPCompatibility,$HOME/bin/PHPCSUtils"
+  phpcs --config-set default_standard "$HOME/bin/sniffex-phpcs56minimal.xml"
+  phpcs --config-set colors 1
+}
+
+function cleanup() {
+  rm -f ~/bin/phpcs
+  # rm -f ~/bin/phpcbf
+  rm -f ~/bin/CodeSniffer.conf
+
+  rm -rf ~/bin/PHPCompatibility
+  rm -rf ~/bin/PHPCSUtils
+  rm -f ~/bin/sniffex
+  rm -f ~/bin/sniffex-phpcs56minimal.xml
+}
+
+function snuff() {
+
+  if [ -z "$1" ]; then
+    echo "Please provide path"
+    exit 1
+  fi
+
+  echo "Starting scan of $1"
+  # phpcs -pn --extensions=php,inc --ignore=*/cache/*,*/uploads/*,*/zoneplus_backups/*,*/sniff-examples/*,*/old*,*/new* --exclude=PHPCompatibility.FunctionUse.NewFunctions,PHPCompatibility.Classes.NewClasses,PHPCompatibility.IniDirectives.RemovedIniDirectives,PHPCompatibility.Constants.NewConstants --runtime-set testVersion 5.6 --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_source.txt --report-code=sniffex_code.txt "$1"
+  # moved settings to ruleset (that has been configured as default)
+  phpcs --report-full=sniffex_full.txt --report-json=sniffex_full.json --report-source=sniffex_summary.txt --report-code=sniffex_code.txt "$1"
+}
+
+if [ $# -eq 0 ]; then
+  help
+  exit 1
+fi
+
+$1 "$2"
