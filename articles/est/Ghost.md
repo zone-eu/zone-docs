@@ -35,7 +35,7 @@ Konfifaili sisu võiks välja näha ümber järgmine:
 
 ```json
 {
-    "url": 'https://example.org',
+    "url": "https://example.org",
     "database": {
         "client": "mysql",
         "connection": {
