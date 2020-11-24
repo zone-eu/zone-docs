@@ -22,7 +22,7 @@ cd Ghost
 # Paigaldamine vajalikud sõlutuvused
 yarn setup
 
-# Vastavalt soovile tuleb seaistada konfiguratsioon. Minimaalse konfina tuleb seadistada andmebaas. https://ghost.org/docs/concepts/config/#database NB! zone's on host väärtus tuleb võtta Minu Zone halduspaneelist MySQL alamlehelt
+# Vastavalt soovile tuleb seadistada konfiguratsioon. Minimaalse konfina tuleb seadistada andmebaas. https://ghost.org/docs/concepts/config/#database NB! zone's on host väärtus tuleb võtta Minu Zone halduspaneelist MySQL alamlehelt
 ```
 
 Vajalikud seadistused tuleb teha vastalt soovile allolevates failides
