@@ -1,5 +1,7 @@
 # Ghost.js Zone virtuaalserveris
 
+Autor: [Ingmar Aasoja](https://github.com/ybr-nx)
+
 Antud õpetus on testitud Ghost versiooniga **3.38.3**
 
 Allolev töötab kõik eeldusel, et on seadistatud domeeni või alamdomeeni seadetes **mod_proxy** port väärtusega **2368**
