@@ -1,27 +1,22 @@
-# Django (Python) Zone.eu virtuaalserveris
+# Django 3 (Python) Zone.eu virtuaalserveris
 
 Autor: [Ingmar Aasoja](https://github.com/ybr-nx) 
 
 Antud õpetus on semi-official. Ehk annab suuna kätte, aga ametlike klienditoe kanalite kaudu tuge ei pakuta.
 
-Õpetus töötab ainult alates uuest ZoneOS platvormi versioonist 19.10.00. Seda saad kontrollida nii:
-```
-cat /etc/os-release | grep PRETTY_NAME
-```
+Õpetus eeldab, et on seadistatud SSH ligipääs. [SSH ühenduse loomine](https://help.zone.eu/kb/ssh-uhenduse-loomine/)
 
 ## 1. Virtualenv'i seadistamine
 
 ```
-virtualenv ~/.venv/django-dev --python=python3.6
+virtualenv ~/.venv/django-dev --python=python3.8
 source ~/.venv/django-dev/bin/activate
 ```
 
 ## 2. Django paigaldamine ja seadistamine
 
-Valitud on verioon 2.1 kuna 2.2 ei toeta PyMySQL moodulit. (Vaata antud õpetuse punkti **6**)
-
 ```sh
-pip install django==2.1
+pip install django==3.1
 ```
 
 Loo projekt
@@ -32,11 +27,11 @@ django-admin startproject miljonivaade
 
 ## 3. Andmebaasid
 
-Kuna vaikimisi seadistatud sqllite3 pole Zone virtuaalsereris oleval pythonil toetatud (ja veebirakenduses ei ole ka kõige õigem valik), peab seadistama muu andmebaasi. Valikuks on **MariaDB** ja **MongoDB**. 
+Kuna vaikimisi seadistatud sqllite3 pole Zone virtuaalsereris oleval pythonil toetatud (ja veebirakenduses ei ole ka kõige õigem valik), seadistame **MariaDB**
 
 ### 3.1.1 MariaDB
 
-Kuna tavaline MariaDB/MySQL moodul vajab kompileerijat, siis kasuta sellleks **PyMysql** moodulit, mis vajab veidi erinevat seadistamist. 
+Kuna tavaline MariaDB/MySQL moodul vajab kompileerijat, siis peab Zone veebimajutuses kasutama selle asemel **PyMysql** moodulit, mis vajab veidi erinevat seadistamist. 
 
 ```
 pip install pymysql
@@ -72,9 +67,9 @@ Faili algus võiks näha välja umbes selline
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-import pymysql
+import pymysql # lisatud rida
 
-pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb() # lisatud rida
 
 def main():
 #....
@@ -93,39 +88,13 @@ https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
 """
 
 import os
-import pymysql
+import pymysql # lisatud rida
 
 from django.core.wsgi import get_wsgi_application
 
-pymysql.install_as_MySQLdb()
+pymysql.install_as_MySQLdb() # lisatud rida
 
 
-```
-
-### 3.1.2 MongoDB
-
-Paigalda **djongo** (MonoDB django moodul)
-
-```
-pip install djongo
-```
-
-Seadista `miljonivaade/miljonivaade/settings.py ` failis andmebaas järgnevalt:
-
-```py
-DATABASES = {
-     'default' : {
-        'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': True,
-        'NAME': 'mongodb_XXX', # MongoDB andmebaas
-        'USER': 'mongodb_XXX', # MongoDB kasutajanimi
-        'PORT': 5678,
-        'PASSWORD': '{XXX}', # MongoDB parool
-        'HOST': 'virtXXX.loopback.zonevs.eu', # MongoDB host
-        'AUTH_SOURCE': 'admin'
-
-    }
-}
 ```
 
 ### 3.2 Käivita migratsioonid
@@ -170,13 +139,14 @@ Selleks, et server töötaks täisväärtuslikult, seadista gunicorn serveerima 
 ```py
 from django.contrib import admin
 from django.urls import path
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-ö
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns # lisatud rida
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns() # lisatud rida
 ```
 
 Kui nüüd rakendust käivitada, siis brauser annab esilehel küll veateate, aga path'ile **/admin** minnes on pilt ilusam. 
@@ -194,7 +164,7 @@ module.exports = {
         cwd  : process.env.HOME + "/domeenid/www.django.miljonivaade.eu/miljonivaade",
         script : process.env.HOME + "/.venv/django-dev/bin/gunicorn",
         args: "miljonivaade.wsgi:application",
-        interpreter: process.env.HOME + "/.venv/django-dev/bin/python3.6",
+        interpreter: process.env.HOME + "/.venv/django-dev/bin/python3.8",
         max_memory_restart : "128M"
     }]
 }
@@ -202,13 +172,13 @@ module.exports = {
 
 Järgmiseks tuleb see seadistada Minu Zone's
 
-`virtuaalserveri haldus` -> `Veebiserver` -> `PM2 ja Done.js` 
+`virtuaalserveri haldus` -> `Veebiserver` -> `PM2 protsessid (Node.js)` 
 Vajuta nuppu **Lisa uus Node.js rakendus**
 
 | Väli | Kirjeldus | 
 | --- | --- |
 | **nimi** | django |
-| **skript või PM2 .JSON** | django-project/miljonivaade/django.config.js |
+| **skript või PM2 .JSON** | /domeenid/www.django.miljonivaade.eu/miljonivaade/django.config.js |
 
 Maksimaalse mälukasutuse võib jätta määramata. Vajuta nuppu **Lisa** ning mõne minuti jooksul peaks rakendus tööle hakkama. Kontrollida saad seda serveris käsuga `pm2 list`
 
@@ -223,33 +193,4 @@ pm2 start django --watch
 Ning kui muudatused tehtud, siis lülita see välja
 ```sh
 pm2 start django
-```
-
-## 6. Django 2.2 ja PyMysql
-
-Kuna PyMySQL'il on veel kompatiilsusprobleeme Djangoga 2.2 versiooniga, siis peab muutma mõnda faili. Neid tuleb teha iga kord, kui paigaldatakse antud pakk pip'iga. Kui antud *issue* lahendatakse, siis täiendan õpetust.
-https://github.com/PyMySQL/PyMySQL/issues/790
-
-Parandatud **PyMySQL** tugi peaks jõudma Django 3.0 versiooni
-https://code.djangoproject.com/wiki/Version3.0Roadmap
-
-Kui on soov paigaldada uuem django, siis saad seda teha käsuga
-```
-pip install django
-```
-
-Django 2.2 puhul pead tegema järgmised muutused
-
-`~/.venv/django-dev/lib64/python3.6/site-packages/django/db/backends/mysql/base.py`
-Rida 35 muuda
-```py
-if version < (1, 3, 12):
-```
-
-`~/.venv/django-dev/lib64/python3.6/site-packages/django/db/backends/mysql/operations.py`
-Rida 146 muuda
-
-```py
-query = query.encode(errors='replace')
-
 ```
