@@ -225,11 +225,13 @@ db.asjad.find();
 db.asjad.drop();
 ```
 
-## 7. Zone pakutud mondo db andmete migreerimine manuaalselt paigaldatud mongodb'le.
+## 7. Zone pakutud mondo db andmete migreerimine
 
 Kuna manuaalselt paigaldatud MongoDB port on erinev zone paigaldatud omast, siis soovitame järgida õpetust ning panna mongodb manuaalselt käima paralleelselt zone omaga ning pärast andmete migreerimist lihtsalt vana zone haldusepaneelist välja lülitada.
 
-### 7.1 Dumpime andmed vanast andmebaasist. Andmebaasi- ja kasutajanime koos salasõnaga võtame minu zone mongodb haldusest.
+### 7.1 Dumpime andmed vanast andmebaasist
+
+Andmebaasi- ja kasutajanime koos salasõnaga võtame minu zone mongodb haldusest.
 
 ```
 mongodump --host [host] --port 5678 --db [database] --username [username] --password [password] --out $HOME/mongodb/dump
