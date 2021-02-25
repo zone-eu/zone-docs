@@ -43,7 +43,7 @@ Esmasel käviitamisel luuakse admin kasutaja, selleks teeme seda manuaalselt. **
 JENKINS_HOME=~/jenkins/home _JAVA_OPTIONS="-Djava.net.preferIPv4Stack=true -Djava.io.tmpdir=~/tmp" java -jar jenkins.war --httpListenAddress=127.X.XX.XX
 ```
 
-Väljundis peaks olema ka kuvatud paigaldse salasõna
+Väljundis peaks olema ka kuvatud esmaseks seadistamiseks salasõna
 
 ```
 *************************************************************
