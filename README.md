@@ -22,5 +22,6 @@ Feel free to contribute.
 | Acme.sh | `lets encrypt`, `shell` | An ACME protocol client written purely in Shell (Unix shell) language | - | [EST](./articles/est/LetsEncrypt-Acme.sh.md) |
 | LeGo | `lets encrypt`, `go` | Let's Encrypt client and ACME library written in Go | - | [EST](./articles/est/LetsEncrypt-Lego.md) |
 | MongoDB | `NoSQL` | Document-oriented NoSQL databse | - | [EST](./articles/est/MongoDB.md) |
+| Jenkins | `Java`, `CI`, `CD` | Open source automation server | - | [EST](./articles/est/Java-Jenkins.md) |
 | SSH&nbsp;config | `shell`, `php`, `api`| Generating SSH config and SSHFS mount aliases using Zone API | [ENG](./articles/eng/SSH-config-and-fs-from-zone-api.md) | - |
 | sniffex | `shell`, `php`| Check for code compatibility with PHP 5.6 | [ENG](./articles/eng/sniffex-PHP-compatibility-check.md) | - |
