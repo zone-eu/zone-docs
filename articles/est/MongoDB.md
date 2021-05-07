@@ -225,7 +225,7 @@ db.asjad.find();
 db.asjad.drop();
 ```
 
-## 7. Zone pakutud mondo db andmete migreerimine
+## 7. Zone pakutud MongoDB andmete migreerimine
 
 Kuna manuaalselt paigaldatud MongoDB port on erinev zone paigaldatud omast, siis soovitame järgida õpetust ning panna mongodb manuaalselt käima paralleelselt zone omaga ning pärast andmete migreerimist lihtsalt vana zone haldusepaneelist välja lülitada.
 
