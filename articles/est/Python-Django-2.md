@@ -2,9 +2,9 @@
 
 Autor: [Ingmar Aasoja](https://github.com/ybr-nx) 
 
-Antud õpetus on semi-official. Ehk annab suuna kätte, aga ametlike klienditoe kanalite kaudu tuge ei pakuta.
+[Antud õpetus on aegunud! Django 3 leiad siit](./Python-Django-3.md)
 
-[Django 3 õpetuse leiad siit](./Python-Django-3.md)
+Antud õpetus on semi-official. Ehk annab suuna kätte, aga ametlike klienditoe kanalite kaudu tuge ei pakuta.
 
 Õpetus töötab ainult alates uuest ZoneOS platvormi versioonist 19.10.00. Seda saad kontrollida nii:
 ```

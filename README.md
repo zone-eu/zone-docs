@@ -16,7 +16,6 @@ Feel free to contribute.
 | --- | --- | --- | --- | --- |
 | Laravel&nbsp;6 | `php` | Laravel framework | - | [EST](./articles/est/PHP-Laravel-6.md) |
 | Gitea | `git`, `go` | Self-hosted Git service | - | [EST](./articles/est/Go-Gitea.md) |
-| Django&nbsp;2 | `python` | Django web framework | - | [EST](./articles/est/Python-Django-2.md) |
 | Django&nbsp;3 | `python` | Django web framework | - | [EST](./articles/est/Python-Django-3.md) |
 | Ghost 3.* | `nodejs` | Ghost blog framework | - | [EST](./articles/est/Ghost.md) |
 | Acme.sh | `lets encrypt`, `shell` | An ACME protocol client written purely in Shell (Unix shell) language | - | [EST](./articles/est/LetsEncrypt-Acme.sh.md) |
