@@ -12,11 +12,30 @@ Antud õpetus on semi-official. Ehk annab suuna kätte, aga ametlike klienditoe 
 ```sh
 mkdir mongodb
 cd mongodb
-wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.4.2.tgz -O download.tgz
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-6.0.0.tgz -O download.tgz
 tar -zxvf download.tgz
 
 # symlink annab võimaluse muuta lihtsamalt mongodb versiooni ilma konfe muutmata
-ln -s mongodb-linux-x86_64-rhel80-4.4.2 mongodb-binary
+ln -s mongodb-linux-x86_64-rhel80-6.0.0 mongodb-binary
+```
+
+Mongodb'ga ühendamiseks käsurealt, paigaldame ka `mongosh` tööriista
+
+```
+wget https://downloads.mongodb.com/compass/mongosh-1.5.2-linux-x64.tgz -O mongosh.tgz
+tar -zxvf mongosh.tgz
+echo 'export PATH=$PATH:$HOME/mongodb/mongosh-1.5.2-linux-x64/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+```
+
+Samuti on vaja mongodb halduse käsurea tööriistu, millega teha andmetest _dump'e_ ning neid taastada.
+
+```sh
+
+wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel80-x86_64-100.5.4.tgz -O tools.tgz
+tar -zxvf tools.tgz
+echo 'export PATH=$PATH:$HOME/mongodb/mongodb-database-tools-rhel80-x86_64-100.5.4/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
 ```
 
 ## 2. Loome vajaliku keskkonna ning seadistused
@@ -142,7 +161,7 @@ child process started successfully, parent exiting
 Loome kasutaja koos vajalike õigustega
 
 ```
-./mongodb-binary/bin/mongo virtXXXX.loopback.zonevs.eu:5679/admin --eval "db.createUser({
+mongosh virtXXXX.loopback.zonevs.eu:5679/admin --eval "db.createUser({
     user:\"kasutaja\",
     pwd:\"salasona\",
     roles:[{role:\"userAdminAnyDatabase\",db:\"admin\"},{role:\"readWriteAnyDatabase\",db:\"admin\"}]
@@ -151,33 +170,20 @@ Loome kasutaja koos vajalike õigustega
 
 Väljundi lõpp võiks olla umbes selline
 
-```
-MongoDB server version: 4.4.2
-Successfully added user: {
-        "user" : "kasutaja",
-        "roles" : [
-                {
-                        "role" : "userAdminAnyDatabase",
-                        "db" : "admin"
-                },
-                {
-                        "role" : "readWriteAnyDatabase",
-                        "db" : "admin"
-                }
-        ]
-}
+```json
+{ ok: 1 }
+
 ```
 
 Nüüd, kus on meil kasutaja loodud, loome ka andmebaasi andmete jaoks. Paneme sellele nimeks `my-database`. Seda saab teha lihtsa käsuga
 
 ```
-./mongodb-binary/bin/mongo virtXXXX.loopback.zonevs.eu:5679/my-database --eval="db"
+mongosh virtXXXX.loopback.zonevs.eu:5679/my-database --eval="db"
 ```
 
-Väljundi kaks viimast rida peaks olema sellised
+Väljundi viimane rida peaks kuvama loodud andmebaasi nime
 
 ```
-MongoDB server version: 4.4.2
 my-database
 ```
 
@@ -216,7 +222,7 @@ Testimaks, kas kõik töötab, võib kasutada alljärgnevaid käske
 ```sh
 
 # Käivitame MongoDB kliendi
-./mongodb-binary/bin/mongo  virtXXXX.loopback.zonevs.eu:5679 -u kasutaja -p salasona --authenticationDatabase admin
+mongosh  virtXXXX.loopback.zonevs.eu:5679 -u kasutaja -p salasona --authenticationDatabase admin
 
 # Järgnevad käsud võiksid kõik toimida
 use my-database
@@ -225,30 +231,18 @@ db.asjad.find();
 db.asjad.drop();
 ```
 
-## 7. Zone pakutud MongoDB andmete migreerimine
+## 7. Adnmebaasi _dump_ & _restore_
 
-Kuna manuaalselt paigaldatud MongoDB port on erinev zone paigaldatud omast, siis soovitame järgida õpetust ning panna mongodb manuaalselt käima paralleelselt zone omaga ning pärast andmete migreerimist lihtsalt vana zone haldusepaneelist välja lülitada.
+Kuna varukoopiaid tehakse failisüsteemi tasandil ning selle tegemise hetkel võib failisüsteemis olla andmebaasi seis pooliks, siis on soovitatav teha ise nö. dump varukoopiad.
 
-### 7.1 Dumpime andmed vanast andmebaasist
-
-Andmebaasi- ja kasutajanime koos salasõnaga võtame minu zone mongodb haldusest.
+### 7.1 Andmete dumpimine failisüsteemi
 
 ```
-mongodump --host [host] --port 5678 --db [database] --username [username] --password [password] --out $HOME/mongodb/dump
+mongodump --host virtXXXX.loopback.zonevs.eu --port 5679 --db my-database --username kasutaja --password salasona --authenticationDatabase admin --out $HOME/mongodb/dump
 ```
 
-### 7.2 Taastame andmed manuaalselt paigaldatud instantsi
+### 7.2 Taastame andmebaasi
 
 ```
-mongorestore --host virtXXXX.loopback.zonevs.eu --port 5679 --db my-database --username kasutaja --password salasona --authenticationDatabase admin $HOME/mongodb/dump/[olddatabasename]
+mongorestore --host virtXXXX.loopback.zonevs.eu --port 5679 --db my-database --username kasutaja --password salasona --authenticationDatabase admin $HOME/mongodb/dump/[andmebaasi nimi, näiteks `my-database`]
 ```
-
-Kui eelnevad käsud töötasid edukalt, võib dump'itud andmed kustutada
-
-```
-rm -rf $HOME/mongodb/dump
-```
-
-
-
-
