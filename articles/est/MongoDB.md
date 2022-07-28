@@ -231,9 +231,9 @@ db.asjad.find();
 db.asjad.drop();
 ```
 
-## 7. Adnmebaasi _dump_ & _restore_
+## 7. Andmebaasi _dump_ & _restore_
 
-Kuna varukoopiaid tehakse failisüsteemi tasandil ning selle tegemise hetkel võib failisüsteemis olla andmebaasi seis pooliks, siis on soovitatav teha ise nö. dump varukoopiad.
+Kuna varukoopiaid tehakse virtuaalserveris failisüsteemi tasandil ning selle tegemise hetkel võib failisüsteemis olla andmebaasi seis poolik, siis on soovitatav teha ise nö. dump varukoopiaid.
 
 ### 7.1 Andmete dumpimine failisüsteemi
 
