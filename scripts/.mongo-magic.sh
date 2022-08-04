@@ -16,11 +16,11 @@ cd mongodb
 mkdir log run db
 
 # GET MONGODB
-wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-4.4.2.tgz -O download.tgz
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-6.0.0.tgz -O download.tgz
 tar -zxvf download.tgz
 
 # CREATE SYMLINK
-ln -s mongodb-linux-x86_64-rhel80-4.4.2 mongodb-binary
+ln -s mongodb-linux-x86_64-rhel80-6.0.0 mongodb-binary
 
 # CREATE MONGO.CFG
 cat > ~/mongodb/mongo.cfg << ENDOFFILE
