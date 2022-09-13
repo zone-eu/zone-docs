@@ -19,8 +19,20 @@ mkdir log run db
 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel80-6.0.0.tgz -O download.tgz
 tar -zxvf download.tgz
 
-# CREATE SYMLINK
+# CREATE SYMLINK FOR EASY UPDATES
 ln -s mongodb-linux-x86_64-rhel80-6.0.0 mongodb-binary
+
+# GET MONGOSH
+wget https://downloads.mongodb.com/compass/mongosh-1.5.2-linux-x64.tgz -O mongosh.tgz
+tar -zxvf mongosh.tgz
+echo 'export PATH=$PATH:$HOME/mongodb/mongosh-1.5.2-linux-x64/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
+
+# GET TOOLS FOR DUMPS AND RECOVERY
+wget https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel80-x86_64-100.5.4.tgz -O tools.tgz
+tar -zxvf tools.tgz
+echo 'export PATH=$PATH:$HOME/mongodb/mongodb-database-tools-rhel80-x86_64-100.5.4/bin' >> $HOME/.bash_profile
+source $HOME/.bash_profile
 
 # CREATE MONGO.CFG
 cat > ~/mongodb/mongo.cfg << ENDOFFILE
@@ -94,7 +106,7 @@ read password
 
 ./mongodb-binary/bin/mongod -f ./mongo.cfg --fork
 
-./mongodb-binary/bin/mongo $USER.loopback.zonevs.eu:5679/admin --eval "db.createUser({
+mongosh $USER.loopback.zonevs.eu:5679/admin --eval "db.createUser({
     user:\"$username\",
     pwd:\"$password\",
     roles:[{role:\"userAdminAnyDatabase\",db:\"admin\"},{role:\"readWriteAnyDatabase\",db:\"admin\"}]
@@ -102,7 +114,7 @@ read password
 
 # CREATE NEW DATABASE
 echo "Creating new database: my-databse"
-./mongodb-binary/bin/mongo $USER.loopback.zonevs.eu:5679/my-database --eval="db"
+mongosh $USER.loopback.zonevs.eu:5679/my-database --eval="db"
 echo "Databse created, shutting down MongoDB"
 
 # CLOSE MONGO
